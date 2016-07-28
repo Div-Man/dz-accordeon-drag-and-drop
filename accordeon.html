@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+     .mainMenu{width: 460px;}
+ 
+ .none{display: none;}
+
+ 
+ ul{
+   list-style: none;
+   padding: 0;
+   font-size: 18px;
+ }
+ 
+ .item{
+   margin-bottom: 5px;  
+ }
+ 
+ .item_title{
+   position: relative;
+   z-index:2;
+ }
+
+
+.item_title span{
+  display: inline-block;
+  position: absolute;
+    top:19px;
+    right:20px;
+    width: 14px;
+    height: 12px;
+    background: url('arrov2.png') no-repeat;
+}
+ 
+  .submenu:before{
+    content: '';
+    display: block;
+    padding-top: 35px;
+  }
+ .submenu{
+   background: #e7e7e7;
+   position: relative;
+   top:-40px;
+   left:0;
+   z-index:1;
+   color: #4f4f4f;
+ }
+ 
+
+ 
+ .item:nth-child(odd) > .item_title{
+   background: #696666;
+  color: white;
+ }
+ 
+  .item:nth-child(even) > .item_title{
+     background: #e7e7e7;
+    
+ }
+ 
+.active{background: #ff8663 !important;}
+
+.item_title, .submenu{
+  padding: 13px 20px;
+  border-radius:30px;
+}
+
+.item_title:hover{
+  cursor: pointer;
+}
+  </style>
+</head>
+
+<body>
+
+  <ul class="mainMenu">
+    
+    <li class="item ">
+      <div class="item_title">Основы языка и как на нём говорить правильно
+        <span></span>
+      </div>
+      <ul class="submenu none">
+          <li>Лексическая структура</li>
+          <li>Типы данных, значения и переменные</li>
+          <li>Выражения и операторы инструкции</li>
+          
+      </ul>
+    </li>
+    <li class="item">
+      <div class="item_title" >Функции  <span></span></div>
+      <ul class="submenu none">
+          <li>Лексическая структура</li>
+          <li>Типы данных, значения и переменные</li>
+          <li>Выражения и операторы инструкции</li>
+          
+      </ul>
+    </li>
+    <li class="item">
+      <div class="item_title" >Обработка ошибок и отладка  <span></span></div>
+      <ul class="submenu none">
+          <li>Лексическая структура</li>
+          <li>Типы данных, значения и переменные</li>
+          <li>Выражения и операторы инструкции</li>
+          
+      </ul>
+    </li>
+    <li class="item">
+      <div class="item_title">Объекты и массивы  <span></span></div>
+      <ul class="submenu none">
+          <li>Лексическая структура</li>
+          <li>Типы данных, значения и переменные</li>
+          <li>Выражения и операторы инструкции</li>
+          
+      </ul>
+    </li>
+    <li class="item">
+      <div class="item_title">События  <span></span></div>
+      <ul class="submenu none">
+          <li>Лексическая структура</li>
+          <li>Типы данных, значения и переменные</li>
+          <li>Выражения и операторы инструкции</li>
+          
+      </ul>
+    </li>
+  </ul>
+  <script>
+    let mainMenu = document.querySelector('.mainMenu')
+    let allItems = document.querySelectorAll('.item'); // получаем все пункты аккордеона
+
+mainMenu.addEventListener("click", e => {
+  let currentItem = e.target.closest('.item'); // поднимаемся до пункта аккордеона, по которому кликнули
+
+  for (let item of allItems) { // перебираем все пункты аккордеона
+    item.firstElementChild.classList.remove('active'); // удаляем класс active
+    item.firstElementChild.nextElementSibling.classList.add('none');
+    item.firstElementChild.firstElementChild.style.backgroundImage = "url('arrov2.png')"
+  }
+  
+  currentItem.firstElementChild.classList.add('active'); // добавляем класс active элементу по которому кликнули
+  currentItem.firstElementChild.nextElementSibling.classList.remove('none')
+  currentItem.firstElementChild.nextElementSibling.style.marginBottom = "-40px";
+  currentItem.firstElementChild.firstElementChild.style.backgroundImage = "url('arrov.png')"
+  
+});
+  </script>
+  </body>
+
+</html>

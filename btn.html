@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  	<meta charset ='utf-8'>
+    <style>
+		.con{position: absolute;}
+
+    </style>
+    
+  </head>
+
+  <body>
+  <button id="btn">Создать div</button>
+  
+  <script>
+  	function div(){
+		var div = document.createElement('div');
+		div.setAttribute('class', 'con')
+		document.body.insertBefore(div, document.body.firstChild)
+		div.addEventListener('mousedown', mDown);
+		div.addEventListener('mouseup', mUp);
+		document.addEventListener('mousemove', mMove);
+
+
+		function oct() {
+        	return Math.floor(Math.random() * 256, 10);
+    	}
+
+    	function rgb() {
+        	div.style.backgroundColor = 'rgb(' + oct() + ',' + oct() + ',' + oct() +')';
+    	}
+
+		rgb()
+		
+		
+		
+		
+			function width() {
+        	return Math.floor(Math.random() * 200, 10);
+    	}
+		
+		function height() {
+        	return Math.floor(Math.random() * 200, 10);
+    	}
+
+    	function size() {
+			  div.style.width = width() + 'px';
+			  div.style.height = height() + 'px';
+    	}
+
+		size()
+		
+		
+			function top() {
+        return Math.floor(Math.random() * 200, 10);
+    }
+	
+	function left() {
+        return Math.floor(Math.random() * 200, 10);
+    }
+
+    function position() {
+			div.style.top = top() + 'px';
+			div.style.left = left() + 'px';
+    }
+
+		position()
+		
+	}	
+	
+	
+	
+	
+
+
+
+	btn.onclick = div
+
+
+	var activeElement;
+	var offsetX = 0;
+	var offsetY = 0;
+	
+	
+	var mDown = function(e){
+		console.log('Нажали кнопку мыши',e)
+		activeElement = e.target;
+		offsetX = e.offsetX
+		offsetY = e.offsetY
+	}	
+		
+	var mUp = function(e){
+		console.log('Отпустили кнопку мыши')
+		activeElement = null
+	}	
+	
+	
+	
+	var mMove = function(e){
+		//console.log('Двигаем курсор', e)
+		if(activeElement) {//если элемент есть, то есть на него нажали...
+			activeElement.style.top = (e.clientY - offsetY) + 'px'
+			//установить координату элементу top на текущее положение мышки
+			//минус смещение 
+			//top от начала экрана до начала объекта
+			activeElement.style.left = (e.clientX - offsetX) + 'px'
+		}
+	}	
+  </script>
+  </body>
+
+</html>
